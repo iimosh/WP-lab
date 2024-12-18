@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Details</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+        div{
+            margin:10px 80px;
+        }
+        table {
+            width:100%;
+        }
+        table, td, th {
+            border: 1px solid black;
+            padding: 3px 2px;
+        }
+    </style>
+</head>
+<body>
+<h2>Event Details</h2>
+<th:block>
+<label>
+    Name: <span th:text="${event.getName()}"></span><br>
+    Description: <span th:text="${event.getDescription()}"></span><br>
+    Rating: <span th:text="${event.getPopularityScore()}"></span><br>
+    Location:<span th:text="${event.getLocation().name}"></span><br>
+</label>
+</th:block>
+<h2> Bookings</h2>
+<div th:each="booking, iter:${bookings}">
+    <table>
+        <tr>
+            <th colspan="2">
+                Booking #<span th:text="${iter.index + 1}"></span>
+            </th>
+        </tr>
+        <tr>
+            <td><b>Attendee Name </b></td>
+            <td th:text="${booking.getUser().getUsername()}"></td>
+        </tr>
+<!--        <tr>-->
+<!--            <td><b>Client IP Address</b></td>-->
+<!--            <td th:text="${booking.}"></td>-->
+<!--        </tr>-->
+        <tr>
+            <td><b>Booking for Event</b></td>
+            <td th:text="${booking.getEvent().getName()}"></td>
+        </tr>
+        <tr>
+            <td><b>Number of tickets</b></td>
+            <td th:text="${booking.getNumberOfTickets()}"></td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
